@@ -131,7 +131,7 @@ bool Bitset::test(intmax_t index)
 std::string Bitset::asString() const
 {
     std::string result;
-    for (intmax_t i = bitSize-1; i >= 0; i--)
+    for (intmax_t i = 0; i < bitSize; i++)
     {
         result += bitData[i] == 0 ? '0' : '1'; // conditonal operator to check index and convert to string accordingly
     }
