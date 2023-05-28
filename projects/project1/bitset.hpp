@@ -6,46 +6,51 @@
 
 class Bitset{
 public:
-
-  // TODO COMMENT
+  // Default constructor
   Bitset();
 
-  // TODO COMMENT
+  // Constructor with bitset size = N
   Bitset(intmax_t size);
 
-  // TODO COMMENT
+  // Constructor with bitset size = length of string "value"
   Bitset(const std::string & value);
 
-  // TODO COMMENT
+  // Destructor
   ~Bitset();
 
   Bitset(const Bitset & ) = delete;
   Bitset & operator=(const Bitset &) = delete;
 
-  // TODO COMMENT
+  // Return bitset size
   intmax_t size() const;
 
-  // TODO COMMENT
+  // Determine if bitset is valid
   bool good() const;
 
-  // TODO COMMENT
+  // Set nth bit
   void set(intmax_t index);
 
-  // TODO COMMENT
+  // Reset nth bit
   void reset(intmax_t index);
 
-  // TODO COMMENT
+  // Toggle nth bit
   void toggle(intmax_t index);
 
-  // TODO COMMENT
+  // Test nth bit
   bool test(intmax_t index);
 
-  // TODO COMMENT
+  // Return bitset as string
   std::string asString() const;
 
 private:
+  // Bit size variable
+  intmax_t bitSize;
 
-  // TODO
+  // Bit data array 
+  uint8_t* bitData;
+
+  // Validity bool
+  bool valid;
 };
 
 #endif
