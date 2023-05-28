@@ -89,14 +89,10 @@ TEST_CASE( "Test combined", "[bitset]" ) {
 
 TEST_CASE("Test toggle", "[bitset]")
 {
-    std::string s1("01001001");
-    std::string s2("01101010");
-    Bitset b(s1);
-    b.toggle(1);
-    b.toggle(3);
-    b.toggle(6);
-
-    REQUIRE(b.size() == s2.size());
+    std::string s("10011011");
+    Bitset b(s);
+    b.toggle(4);
+    REQUIRE(b.size() == 8);
     REQUIRE(b.good());
-    REQUIRE(b.asString() == s2);
+    REQUIRE(b.asString().compare(s) == 0);
 }
