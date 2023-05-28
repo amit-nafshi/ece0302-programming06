@@ -96,3 +96,24 @@ TEST_CASE( "Test bitset validity", "[bitset]" ) {
     Bitset b2(-10);
     REQUIRE_FALSE(b2.good());
 }
+
+TEST_CASE( "Test reset nth bit to 0", "[bitset]" ) {
+    std::string s("00010000");
+    Bitset b;
+    b.set(3);
+    b.reset(3);
+    REQUIRE(b.size() == 8);
+    REQUIRE(b.good());
+    REQUIRE(b.asString() == s);
+}
+
+TEST_CASE( "Test toggle nth bit", "[bitset]" ) {
+    std::string s("00010101");
+    Bitset b;
+    b.set(3);
+    b.toggle(2);
+    b.toggle(7);
+    REQUIRE(b.size() == 8);
+    REQUIRE(b.good());
+    REQUIRE(b.asString() == s);
+}
