@@ -108,7 +108,7 @@ void Bitset::toggle(intmax_t index)
         }
         else if (bitData[index] == 1)
         {
-            bitData[index] == 0;
+            bitData[index] = 0;
         }
     }
 }
