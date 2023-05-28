@@ -84,3 +84,15 @@ TEST_CASE( "Test combined", "[bitset]" ) {
         REQUIRE(((b.test(i + (1<<11)) == true && s.at(i + (1<<11)) == '0') || (b.test(i + (1<<11)) == false && s.at(i + (1<<11)) == '1')));
     }
 }
+
+// ADDED TEST CASES
+
+TEST_CASE( "Test bitset validity", "[bitset]" ) {
+    // Valid bitset
+    Bitset b1(8);
+    REQUIRE(b1.good());
+
+    // Invalid bitset
+    Bitset b2(-10);
+    REQUIRE_FALSE(b2.good());
+}
