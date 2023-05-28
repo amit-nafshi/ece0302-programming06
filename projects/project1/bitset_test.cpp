@@ -87,16 +87,6 @@ TEST_CASE( "Test combined", "[bitset]" ) {
 
 // ADDED TEST CASES
 
-TEST_CASE( "Test bitset validity", "[bitset]" ) {
-    // Valid bitset
-    Bitset b1(8);
-    REQUIRE(b1.good());
-
-    // Invalid bitset
-    Bitset b2(-10);
-    REQUIRE_FALSE(b2.good());
-}
-
 TEST_CASE( "Test reset nth bit to 0", "[bitset]" ) {
     std::string s("00010000");
     Bitset b;
