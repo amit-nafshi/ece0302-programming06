@@ -113,7 +113,7 @@ void Bitset::toggle(intmax_t index)
     }
 }
 
-// Set Toggle nth bit
+// Test nth bit
 bool Bitset::test(intmax_t index)
 {
     if (index >= 0 && index < bitSize)
