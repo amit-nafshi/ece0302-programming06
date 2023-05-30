@@ -17,13 +17,13 @@ public:
 
   bool add(const T& entry);
 
-  bool remove(const T& entry) override;
+  bool remove(const T& entry);
 
-  void clear() override;
+  void clear();
 
-  std::size_t getFrequencyOf(const T& entry) const override;
+  std::size_t getFrequencyOf(const T& entry) const;
 
-  bool contains(const T& entry) const override;
+  bool contains(const T& entry) const;
 
   const static std::size_t MAXSIZE = 100;
   
