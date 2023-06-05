@@ -1,3 +1,14 @@
+/**
+ * @file dynamic_bag.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2023-06-04
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef _DYNAMIC_BAG_HPP_
 #define _DYNAMIC_BAG_HPP_
 
@@ -44,8 +55,14 @@ public:
   bool contains(const T& item) const;
 
 private:
+  // pointer to dynamic-size bag array
+  T* items;  
 
-  // TODO
+  // size of bag 
+  std::size_t bagSize;
+
+  // number of items in bag
+  std::size_t bagCount;
 };
 
 #include "dynamic_bag.tpp"

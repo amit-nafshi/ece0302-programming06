@@ -18,3 +18,11 @@ TEST_CASE("Calling all public members", "[LimitedSizeBag]"){
   b.contains(0);
 
 }
+
+TEST_CASE("Test Construction/Destruction", "[Bag]"){
+  LimitedSizeBag<int> b;
+  
+  REQUIRE(b.getCurrentSize() == 0);
+  REQUIRE(b.isEmpty());
+}
+
