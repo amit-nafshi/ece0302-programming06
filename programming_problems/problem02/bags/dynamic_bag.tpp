@@ -19,7 +19,6 @@ DynamicBag<T>::DynamicBag()
   bagCount = 0;
 }
   
-
 template<typename T>
 DynamicBag<T>::DynamicBag(const DynamicBag<T>& x)
 {
@@ -41,7 +40,7 @@ DynamicBag<T>::~DynamicBag()
 template<typename T>
 DynamicBag<T>& DynamicBag<T>::operator=(DynamicBag<T> x)
 {  
-  swap(x);
+  swap(x);        // added swap
   return *this;
 }
 
@@ -53,7 +52,6 @@ void DynamicBag<T>::swap(DynamicBag<T>& x)
   std::swap(items, x.items);
 }
 
-// Add an item to the bag
 template<typename T>
 bool DynamicBag<T>::add(const T& item)
 {
@@ -64,17 +62,18 @@ bool DynamicBag<T>::add(const T& item)
   }
   newItems[bagCount] = item;
 
-  delete[] items;
+  delete[] items;     // clear and adjust bag
   items = newItems;
   bagCount++;
 
   return true;
 }
 
-// remove an item from the bag
 template<typename T>
 bool DynamicBag<T>::remove(const T& item)
 {
+  // searches through array with while loops
+
   std::size_t index = 0;
   while (index < bagCount && items[index] != item)
   {

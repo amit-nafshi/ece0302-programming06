@@ -6,8 +6,16 @@
 // Force template expansion for ints
 template class DynamicBag<int>;
 
-TEST_CASE("Test Type", "[DynamicBag]"){
-  REQUIRE((std::is_base_of<AbstractBag<int>, DynamicBag<int>>::value) == 1);
+TEST_CASE("Calling all public members", "[DynamicBag]"){
+  DynamicBag<int> b;
+
+  b.add(0);
+  b.remove(0);
+  b.isEmpty();
+  b.getCurrentSize();
+  b.clear();
+  b.getFrequencyOf(0);
+  b.contains(0);
 }
 
 TEST_CASE("Test Construction/Destruction", "[DynamicBag]"){

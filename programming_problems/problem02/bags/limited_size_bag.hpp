@@ -1,3 +1,14 @@
+/**
+ * @file limited_size_bag.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2023-06-05
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef LIMITED_SIZE_BAG_HPP
 #define LIMITED_SIZE_BAG_HPP
 
@@ -35,8 +46,11 @@ public:
   static const std::size_t maxsize = 100;
 
 private:
+  // array of bag items
+  T items[maxsize];  
 
-  // TODO
+  // number of items in the bag 
+  std::size_t bagCount;
 };
 
 #include "limited_size_bag.tpp"
