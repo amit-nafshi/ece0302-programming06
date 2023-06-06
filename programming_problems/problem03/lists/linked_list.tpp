@@ -1,3 +1,14 @@
+/**
+ * @file linked_list.tpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2023-06-06
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include "linked_list.hpp"
 
 template <typename T>

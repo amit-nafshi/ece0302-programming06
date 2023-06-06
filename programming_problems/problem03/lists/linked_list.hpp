@@ -1,3 +1,14 @@
+/**
+ * @file linked_list.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2023-06-06
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef _LINKED_LIST_HPP_
 #define _LINKED_LIST_HPP_
 

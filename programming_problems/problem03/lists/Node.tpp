@@ -1,3 +1,14 @@
+/**
+ * @file Node.tpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2023-06-06
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include "Node.hpp"
 
 template<class ItemType>

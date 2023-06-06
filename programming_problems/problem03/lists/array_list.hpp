@@ -1,3 +1,14 @@
+/**
+ * @file array_list.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2023-06-06
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef ARRAY_LIST_HPP
 #define ARRAY_LIST_HPP
 
