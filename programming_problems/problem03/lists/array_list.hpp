@@ -56,9 +56,14 @@ public:
   void setEntry(std::size_t position, const T& newValue);
 
 private:
+  // pointer to resizable dynamic array
+  T* items;
 
-  // TODO
-  
+  // number of items in list
+  std::size_t arrCount;
+
+  // size of list
+  std::size_t arrSize;
 };
 
 #include "array_list.tpp"
