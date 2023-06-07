@@ -56,9 +56,14 @@ public:
   void setEntry(std::size_t position, const T& newValue);
 
 private:
+  // head node pointer
+  Node<T>* headPtr;
 
-  //TODO
-  
+  // number of items in list 
+  std::size_t listNum;
+
+  // size of linked list 
+  std::size_t linkSize;
 };
 
 #include "linked_list.tpp"
