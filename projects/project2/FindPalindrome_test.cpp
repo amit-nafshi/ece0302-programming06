@@ -1,3 +1,14 @@
+/**
+ * @file FindPalindrome_test.cpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Project 2: Palindromes
+ * @version 0.1
+ * @date 2023-06-11
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"

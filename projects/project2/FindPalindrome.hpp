@@ -1,3 +1,14 @@
+/**
+ * @file FindPalindrome.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Project 2: Palindromes
+ * @version 0.1
+ * @date 2023-06-11
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef FINDPALINDROME_HPP
 #define FINDPALINDROME_HPP
 
@@ -9,8 +20,11 @@ class FindPalindrome{
 private:
 	// private stuff that you define and implement goes here...
 	
-	// ...
-	
+	std::vector<std::string> words; // string vector
+	int paliCount; 					// palindrome counter
+	std::vector<std::vector<std::string>> paliVec; 
+									// vector of palindromes 
+
 	// private stuff that you are given or is specified in the project
 	// description...
 	/** recursive findPalindrome internal method (you write this 
