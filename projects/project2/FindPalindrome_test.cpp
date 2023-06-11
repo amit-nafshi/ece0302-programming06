@@ -22,7 +22,7 @@ TEST_CASE( "Test adding a non-allowable word", "[FindPalindrome]" )
 	REQUIRE(!b.add("kayak1"));
 }
 
-TEST_CASE("test recursion", "[FindPalindrome]"){
+TEST_CASE("Test Recursion", "[FindPalindrome]"){
 	FindPalindrome b;
 
 	REQUIRE(b.add("a"));
@@ -31,3 +31,29 @@ TEST_CASE("test recursion", "[FindPalindrome]"){
 	REQUIRE(b.number() == 6);
 }
 
+TEST_CASE("Test Clearing", "[FindPalindrome]")
+{
+    FindPalindrome b;
+
+    REQUIRE(b.add("a"));
+    REQUIRE(b.add("AA"));
+    REQUIRE(b.add("AaA"));
+    REQUIRE(b.number() == 6);
+
+    b.clear();
+    REQUIRE(b.number() == 0);
+    REQUIRE(b.toVector().empty());
+}
+
+TEST_CASE("Test Add (single word)", "[FindPalindrome]") {
+    FindPalindrome b;
+    REQUIRE(b.add("a"));
+    REQUIRE(b.number() == 1);
+}
+
+TEST_CASE("Test Add (vector)", "[FindPalindrome]") {
+    FindPalindrome b;
+    std::vector<std::string> words = {"AA", "AaA"};
+    REQUIRE(b.add(words));
+    REQUIRE(b.number() == 2);
+}

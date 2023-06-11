@@ -49,8 +49,36 @@ static bool isValidWord(const string& word)
 void FindPalindrome::recursiveFindPalindromes(vector<string>
         candidateStringVector, vector<string> currentStringVector)
 {
-	// TODO need to implement this recursive function!
-	return;
+	// test currentStringVector if empty 
+	if (currentStringVector.empty()) 
+	{
+		// test for palindrome in candidateStringVector 
+        std::string sentence;
+        for (const std::string& word : candidateStringVector) {
+            sentence += word;
+        }
+        if (isPalindrome(sentence)) {
+            ++paliCount; 								// update count 
+            paliVec.push_back(candidateStringVector);	// update vector
+        }
+        return;
+    }
+
+
+	// recursive loop
+	for (size_t i = 0; i < currentStringVector.size(); i++) 
+	{
+		vector<string> newCandidateStringVector = candidateStringVector;
+		vector<string> newCurrentStringVector = currentStringVector;
+
+		// add word from currentStringVector to candidateStringVector
+		newCandidateStringVector.push_back(currentStringVector[i]);
+		
+		// remove word from currentStringVector
+		newCurrentStringVector.erase(newCurrentStringVector.begin() + i);
+
+		recursiveFindPalindromes(newCandidateStringVector, newCurrentStringVector);
+	}
 }
 
 // private function to determine if a string is a palindrome (given, you
@@ -92,7 +120,10 @@ int FindPalindrome::number() const
 
 void FindPalindrome::clear()
 {
-	// TODO need to implement this...
+	// clear palindrome
+	words.clear(); // built in std function clear, no recursion
+	paliCount = 0;
+	paliVec.clear();
 }
 
 bool FindPalindrome::cutTest1(const vector<string> & stringVector)
@@ -120,14 +151,24 @@ bool FindPalindrome::add(const string & value)
     string lowerVal = value;
     convertToLowerCase(lowerVal);
 
+	// check if the lowercase word already exists in the word list
+    for (size_t i = 0; i < words.size(); i++) 
+	{
+        std::string lcWord = words[i];
+        convertToLowerCase(lcWord);
+        if (lcWord == lowerVal) {
+            return false;
+        }
+    }
+
 	// add the lowercase word to word list
     words.push_back(lowerVal);
 
-    // Clear the palindrome count and solutions vector
+    // clear the palindrome count and vector
     paliCount = 0;
     paliVec.clear();
 
-    // Call the recursive function to find new palindromes
+    // call recursive function to find new palindromes
     recursiveFindPalindromes({}, words);
 
     return true;
@@ -135,12 +176,57 @@ bool FindPalindrome::add(const string & value)
 
 bool FindPalindrome::add(const vector<string> & stringVector)
 {
-	// TODO need to implement this...
-	return false;
+	// loop through vector to check if any word is valid
+	for (size_t i = 0; i < stringVector.size(); i++) 
+	{
+        const std::string& word = stringVector[i];
+
+		// check if the word is valid (isalpha)
+        if (!isValidWord(word)) 
+		{
+            return false;
+        }
+
+		// convert the word to lowercase
+        std::string lowWord = word;
+        convertToLowerCase(lowWord);
+
+        for (size_t j = 0; j < words.size(); j++) 
+		{
+            const std::string& existingWord = words[j];
+            std::string lcExist = existingWord;
+            convertToLowerCase(lcExist);
+            
+            if (lcExist == lowWord) 
+			{
+                return false;
+            }
+        }
+    }
+
+
+	// add the lowercase words to the word list
+	for (size_t z = 0; z < stringVector.size(); z++) 
+	{
+        const std::string& vect = stringVector[z];
+        std::string lcWord = vect;
+        convertToLowerCase(lcWord);
+        words.push_back(lcWord);
+    }
+	
+	// clear the palindrome count and vector
+    paliCount = 0;
+    paliVec.clear();
+
+    // call recursive function to find new palindromes
+    recursiveFindPalindromes({}, words);
+
+    return true;
 }
 
 vector< vector<string> > FindPalindrome::toVector() const
 {
+	// return palidrome vector 
 	return paliVec;
 }
 
