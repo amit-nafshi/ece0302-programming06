@@ -61,9 +61,6 @@ private:
 
   // number of items in list 
   std::size_t listNum;
-
-  // size of linked list 
-  std::size_t linkSize;
 };
 
 #include "linked_list.tpp"

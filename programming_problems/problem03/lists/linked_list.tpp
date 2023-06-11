@@ -14,77 +14,194 @@
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-  //TODO
+  // initialize linked list
+  headPtr = nullptr;
+  listNum = 0;
 }
 
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-  //TODO
+  // deconstruct node through clear
+  clear();
 }
 
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& x)
 {
-  //TODO
+  // initialize linked list, then copy parameter
+  headPtr = nullptr;
+  listNum = 0;
+
+  Node<T>* newPtr = x.headPtr;
+  while (newPtr != nullptr)
+  {
+    insert(listNum, newPtr->getItem());
+    newPtr = newPtr->getNext();
+  }
 }
 
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> x)
 {
-  //TODO
+  // call swap, point to this to deallocate
+  swap(x);
   return *this;
 }
 
 template <typename T>
 void LinkedList<T>::swap(LinkedList& x) 
 {
-  //TODO
+  // swap list parameters for = operator
+  std::swap(listNum, x.listNum);
+  std::swap(headPtr, x.headPtr);
 }
 
 template <typename T>
 bool LinkedList<T>::isEmpty() const noexcept
 {
-  //TODO
-  return true;
+  // empty if listNum == 0
+  return (listNum == 0);
 }
 
 template <typename T>
 std::size_t LinkedList<T>::getLength() const noexcept
 {
-  //TODO
-  return 0;
+  // return listNum
+  return listNum;
 }
 
 template <typename T>
 bool LinkedList<T>::insert(std::size_t position, const T& item)
 {
-  //TODO
+  // pg. 145 (4.2.3)
+  // check for invalid position
+  if (position > listNum)
+  {
+    return false;
+  }
+
+  // create temp pointer
+  Node<T>* temp = new Node<T>(item);
+  
+  // check if at head already
+  if (position == 0)
+  {
+    temp->setNext(headPtr);
+    headPtr = temp;
+  }
+  else
+  {
+    // create pointer for current node
+    Node<T>* prevNode = headPtr;
+    for (std::size_t i = 0; i < position - 1; i++)
+    {
+      prevNode = prevNode->getNext();
+    }
+    temp->setNext(prevNode->getNext());
+    prevNode->setNext(temp);
+  }
+
+  listNum++;
   return true;
 }
 
 template <typename T>
 bool LinkedList<T>::remove(std::size_t position)
 {
-  //TODO
+  // pg. 145 (4.2.3)
+  // check for invalid position
+  if (position >= listNum)
+  {
+    return false;
+  }
+
+  // create temp pointer 
+  Node<T>* temp = nullptr;
+
+  // check if at head already
+  if (position == 0)
+  {
+    temp = headPtr;
+    headPtr = headPtr->getNext();
+  }
+  else
+  {
+    // create pointer for current node
+    Node<T>* prevNode = headPtr;
+    for (std::size_t i = 0; i < position - 1; i++)
+    {
+      prevNode = prevNode->getNext();
+    }
+    temp = prevNode->getNext();
+    prevNode->setNext(temp->getNext());
+  }
+
+  delete temp;
+  temp = nullptr;
+  listNum--;
   return true;
 }
 
 template <typename T>
 void LinkedList<T>::clear()
 {
-  //TODO
+  // clear/deconstruct linked list
+  while (headPtr != nullptr)
+  {
+    Node<T>* temp = headPtr;
+    headPtr = headPtr->getNext();
+    delete temp;
+  }
+
+  listNum = 0;
 }
 
 template <typename T>
 T LinkedList<T>::getEntry(std::size_t position) const
 {
-  //TODO
-  return T();
+  // check for invalid position
+  if (position >= listNum)
+  {
+    return false;
+  }
+
+  // create entry pointer 
+  Node<T>* entryPtr = headPtr;
+
+  // sort through nodes until position is reached
+  for (std::size_t i = 0; i < position; i++)
+  {
+    entryPtr = entryPtr->getNext();
+  }
+  return entryPtr->getItem();
 }
 
 template <typename T>
 void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 {
-  //TODO
+  // check for invalid position
+  if (position >= listNum)
+  {
+    return;
+  }
+
+  // create entry pointer 
+  Node<T>* entryPtr = headPtr;
+
+  // sort through nodes until position is reached
+  for (std::size_t i = 0; i < position; i++)
+  {
+    entryPtr = entryPtr->getNext();
+  }
+  entryPtr->setItem(newValue);
 }
+
+
+
+
+
+
+
+
+
