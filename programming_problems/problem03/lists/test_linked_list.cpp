@@ -16,7 +16,72 @@
 
 template class LinkedList<int>;
 
-TEST_CASE( "TODO", "[LinkedList]" ) {
+TEST_CASE("Test Construction/Destruction", "[LinkedList]") {
+  LinkedList<int> list;
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+}
 
-    LinkedList<int> list;
+TEST_CASE("Test Insert", "[LinkedList]") {
+  LinkedList<int> list;
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+
+  int position = 0, item = 42;
+  REQUIRE(list.insert(position, item));
+  REQUIRE(list.getLength() == 1);
+  REQUIRE(!list.isEmpty());
+  REQUIRE(list.getEntry(position) == item);
+}
+
+TEST_CASE("Test Remove", "[LinkedList]") {
+  LinkedList<int> list;
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+
+  int position = 0, item = 42;
+  REQUIRE(list.insert(position, item));
+  REQUIRE(list.getLength() == 1);
+  REQUIRE(!list.isEmpty());
+
+  REQUIRE(list.remove(position));
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+}
+
+TEST_CASE("Test Clear", "[LinkedList]") {
+  LinkedList<int> list;
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+  list.clear();
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+}
+
+TEST_CASE("Test Get Entry", "[LinkedList]") {
+  LinkedList<int> list;
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+
+  int position = 0, item = 42;
+  REQUIRE(list.insert(position, item));
+  REQUIRE(list.getLength() == 1);
+  REQUIRE(!list.isEmpty());
+
+  REQUIRE(list.getEntry(position) == item);
+}
+
+TEST_CASE("Test Set Entry", "[LinkedList]") {
+  LinkedList<int> list;
+  REQUIRE(list.getLength() == 0);
+  REQUIRE(list.isEmpty());
+
+  int position = 0, item = 42;
+  REQUIRE(list.insert(position, item));
+  REQUIRE(list.getLength() == 1);
+  REQUIRE(!list.isEmpty());
+
+  int newItem = 99;
+  list.setEntry(position, newItem);
+  REQUIRE(list.getEntry(position) == newItem);
 }
