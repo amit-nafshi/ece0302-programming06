@@ -144,7 +144,31 @@ void FindPalindrome::clear()
 
 bool FindPalindrome::cutTest1(const vector<string>& stringVector)
 {
-    return true; 
+    vector<int> charCount(26, 0);  // vector covers all letters in alphabet (a-z)
+
+    // count characters in each string in stringVector
+    // use charCounter helper function
+    for (const string& word : stringVector) {
+        vector<int> wordCharCount = charCounter(word);
+        for (int i = 0; i < 26; i++) {
+            charCount[i] += wordCharCount[i];
+        }
+    }
+
+    // check if (at most) one character has odd count
+    int oddCount = 0;
+    for (int count : charCount)
+    {
+        if (count % 2 == 1) // modulus checks if odd
+        {
+            oddCount++;
+            if (oddCount > 1) 
+            {
+                return false; // cut test is false, no palindrome
+            }
+        }
+    }
+    return true; // pass cut test
 }
 
 
@@ -245,9 +269,9 @@ vector< vector<string> > FindPalindrome::toVector() const
 	return paliVec;
 }
 
-//**************************************************************************
+//********************************************************************************************************
 // SOURCES
-//**************************************************************************
+//********************************************************************************************************
 // https://stackoverflow.com/questions/52281172/subtracting-ascii-character-values-in-c
 // - charCount range type conversion
 // https://code4coding.com/c-program-to-count-the-total-number-of-characters-in-the-given-string-2/
@@ -257,3 +281,5 @@ vector< vector<string> > FindPalindrome::toVector() const
 // https://cplusplus.com/reference/cctype/isalpha/
 // - tried looking up what locale does, ended up finding this website that helps check
 //   if a word is valid before checking if it is a palindrome
+//
+//********************************************************************************************************
