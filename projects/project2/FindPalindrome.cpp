@@ -166,7 +166,7 @@ bool FindPalindrome::cutTest1(const vector<string>& stringVector)
             oddCount++;
             if (oddCount > 1) 
             {
-                return false; // cut test is false, no palindrome
+                return false; // fail cut test, no palindrome
             }
         }
     }
@@ -181,7 +181,42 @@ bool FindPalindrome::cutTest2(const vector<string> & stringVector1,
 	vector<int> charCount1(26, 0);
     vector<int> charCount2(26, 0);
 
-    
+    // count characters in each string in stringVector1
+    // use charCounter helper function
+    for (const string& word : stringVector1) 
+    {
+        vector<int> wordCharCount = charCounter(word);
+        for (int i = 0; i < 26; i++) 
+        {
+            charCount1[i] += wordCharCount[i];
+        }
+    }
+
+    // count characters in each string in stringVector2
+    // use charCounter helper function
+    for (const string& word : stringVector2) 
+    {
+        vector<int> wordCharCount = charCounter(word);
+        for (int i = 0; i < 26; i++) 
+        {
+            charCount2[i] += wordCharCount[i];
+        }
+    }
+
+    // check if characters in stringVector1 are a subset of characters in stringVector2
+    // {x}
+    // {x}{y} <-- x is subset, valid
+    //
+    // {x}{y}
+    // {x}    <-- xy not subset of x, invalid
+    for (int i = 0; i < 26; i++) 
+    {
+        if (charCount1[i] > charCount2[i]) 
+        {
+            return false; // invalid subset, fail cut test
+        }
+    }
+    return true; // valid subset, pass cut test
 }
 
 bool FindPalindrome::add(const string & value)
