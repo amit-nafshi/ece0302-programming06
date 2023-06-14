@@ -177,8 +177,11 @@ bool FindPalindrome::cutTest1(const vector<string>& stringVector)
 bool FindPalindrome::cutTest2(const vector<string> & stringVector1,
                               const vector<string> & stringVector2)
 {
-	// TODO need to implement this...
-	return false;
+    // charCounts for the 2 stringVectors 
+	vector<int> charCount1(26, 0);
+    vector<int> charCount2(26, 0);
+
+    
 }
 
 bool FindPalindrome::add(const string & value)
