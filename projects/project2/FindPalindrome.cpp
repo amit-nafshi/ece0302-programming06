@@ -148,9 +148,11 @@ bool FindPalindrome::cutTest1(const vector<string>& stringVector)
 
     // count characters in each string in stringVector
     // use charCounter helper function
-    for (const string& word : stringVector) {
+    for (const string& word : stringVector) 
+    {
         vector<int> wordCharCount = charCounter(word);
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 26; i++) 
+        {
             charCount[i] += wordCharCount[i];
         }
     }
