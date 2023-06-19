@@ -53,9 +53,12 @@ TEST_CASE("Test Add (single word)", "[FindPalindrome]") {
 
 TEST_CASE("Test Add (vector)", "[FindPalindrome]") {
     FindPalindrome b;
-    std::vector<std::string> words = {"AA", "AaA"};
-    REQUIRE(b.add(words));
+    std::vector<std::string> words1 = {"AA", "AaA"};
+    REQUIRE(b.add(words1));
     REQUIRE(b.number() == 2);
+
+    std::vector<std::string> words2 = {"aa", "aA"};
+    REQUIRE(!b.add(words2));
 }
 
 TEST_CASE("Test Cut Test 1", "[FindPalindrome]")

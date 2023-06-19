@@ -47,10 +47,11 @@ static bool isValidWord(const string& word)
 // needed for cutTest1, prepares vectors to be checked for palindrome
 static vector<int> charCounter(const string& word)
 {
+    locale loc;
     vector<int> charCount(26, 0); // vector covers all letters in alphabet (a-z)
     for (char c : word)
     {
-        tolower(c);           // convert char to lowercase 
+        c = tolower(c);       // convert char to lowercase 
         charCount[c - 'a']++; // subtracting by 'a' shifts the range from int <0,26> to ASCII <'a','z'>
     }
     return charCount; // send to cut test for further testing
@@ -101,17 +102,27 @@ void FindPalindrome::recursiveFindPalindromes(vector<string>
 // may change this if you want)
 bool FindPalindrome::isPalindrome(string currentString) const
 {
-	locale loc;
+    // remove spaces from the string
+    string newString;
+    for (char c : currentString)
+    {
+        if (c != ' ')
+        {
+            newString += c;
+        }
+    }
+   
 	// make sure that the string is lower case...
-	convertToLowerCase(currentString);
+	convertToLowerCase(newString);
 	// see if the characters are symmetric...
-	int stringLength = currentString.size();
+	int stringLength = newString.size();
 	for (int i=0; i<stringLength/2; i++) {
-		if (currentString[i] != currentString[stringLength - i - 1]) {
+		if (newString[i] != newString[stringLength - i - 1]) {
 			return false;
 		}
 	}
 	return true;
+    
 }
 
 //------------------- PUBLIC CLASS METHODS -------------------------------------
@@ -203,15 +214,37 @@ bool FindPalindrome::cutTest2(const vector<string> & stringVector1,
         }
     }
 
-    // check if characters in stringVector1 are a subset of characters in stringVector2
-    // {x}
-    // {x}{y} <-- x is subset, valid
-    //
-    // {x}{y}
-    // {x}    <-- xy not subset of x, invalid
+    // vector sums to determine and compare size
+    int sum1 = 0;
+    int sum2 = 0;
+
+    // fill sum variables
     for (int i = 0; i < 26; i++) 
     {
-        if (charCount1[i] > charCount2[i]) 
+        sum1 += charCount1[i];
+        sum2 += charCount2[i];
+    }
+
+    // pointers to represent the "larger" and "smaller" character counts
+    vector<int> *largerChar;
+    vector<int> *smallerChar;
+
+    // compare sizes, allocate accordingly
+    if (sum1 > sum2) 
+    {
+        largerChar = &charCount1;
+        smallerChar = &charCount2;
+    } 
+    else 
+    {
+        largerChar = &charCount2;
+        smallerChar = &charCount1;
+    }
+
+    // check if characters in the "smaller" vector are a subset of characters in the "larger" vector
+    for (int i = 0; i < 26; i++) 
+    {
+        if ((*smallerChar)[i] > (*largerChar)[i]) 
         {
             return false; // invalid subset, fail cut test
         }
@@ -258,20 +291,31 @@ bool FindPalindrome::add(const string & value)
 
 bool FindPalindrome::add(const vector<string> & stringVector)
 {
-	// loop through vector to check if any word is valid
+    // compare to stringVector*****
+    vector<string> newWords;
+    // loop through vector to check if any word is valid
     for (const string& wrld : stringVector)
     {
-
-		// check if the word is valid (isalpha)
+        // check if the word is valid (isalpha)
         if (!isValidWord(wrld)) 
-		{
+        {
             return false;
         }
 
-		// convert the word to lowercase
+        // convert the word to lowercase
         std::string lowWord = wrld;
         convertToLowerCase(lowWord);
 
+        // check passed vector for duplicates
+        for (const string& newWord : newWords)
+        {
+            if (newWord == lowWord)
+            {
+                return false;
+            }
+        }
+
+        // check words vector for existing words
         for (const string& existingWord : words)
         {
             string lowerExistingWord = existingWord;
@@ -282,18 +326,18 @@ bool FindPalindrome::add(const vector<string> & stringVector)
                 return false;
             }
         }
+
+        // add the lowercase word to newWords if it passed previous checks
+        newWords.push_back(lowWord);
     }
 
-
-	// add the lowercase words to the word list
-	for (const string& vect : stringVector)
+    // add the lowercase words to the word list
+    for (const string& vect : newWords)
     {
-        std::string lcWord = vect;
-        convertToLowerCase(lcWord);
-        words.push_back(lcWord);
+        words.push_back(vect);
     }
-	
-	// clear the palindrome count and vector
+    
+    // clear the palindrome count and vector
     paliCount = 0;
     paliVec.clear();
 
@@ -321,5 +365,4 @@ vector< vector<string> > FindPalindrome::toVector() const
 // https://cplusplus.com/reference/cctype/isalpha/
 // - tried looking up what locale does, ended up finding this website that helps check
 //   if a word is valid before checking if it is a palindrome
-//
 //********************************************************************************************************
