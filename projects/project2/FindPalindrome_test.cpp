@@ -76,4 +76,4 @@ TEST_CASE("Test Cut Test 2", "[FindPalindrome]")
     std::vector<std::string> words1 = {"race"};
     std::vector<std::string> words2 = {"race", "car"};
     REQUIRE(b.cutTest2(words1, words2));
-}
+}  
