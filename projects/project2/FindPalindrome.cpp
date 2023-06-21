@@ -75,8 +75,8 @@ void FindPalindrome::recursiveFindPalindromes(vector<string>
 		// check if palindrome
         if (isPalindrome(sentence)) 
 		{
-            paliCount++; 								// update count 
             paliVec.push_back(candidateStringVector);	// update vector
+            paliCount++; 								// update count
         }
         return;
     }
