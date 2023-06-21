@@ -2,7 +2,8 @@
 using std::string;
 
 #include <iostream>
-
+#include <stack>
+#include <string>
 #include <cctype> // for isalpha
 
 #include "algebraic_expressions.hpp"
@@ -41,8 +42,32 @@ bool isPost(string s) {
   return (firstChar == 0);
 }
 
-void convert(string &postfix, string &prefix) {
+void convert(string &postfix, string &prefix) 
+{
+  // 5.2.3 (Inverse!)
+  // post to pre
+  std::stack<std::string> stack;
+  for (char ch : postfix) 
+  {
+    if (isalpha(ch)) 
+    {  
+      // operand
+      std::string operand(1, ch);
+      stack.push(operand);
+    } 
+    else 
+    {  
+      // operator
+      std::string operand2 = stack.top();
+      stack.pop();
+      std::string operand1 = stack.top();
+      stack.pop();
 
-  // TODO
-  
+      std::string result = ch + operand1 + operand2;
+      stack.push(result);
+    }
+  }
+
+  prefix = stack.top();
 }
+
