@@ -1,3 +1,14 @@
+/**
+ * @file linked_list.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem 5
+ * @version 0.1
+ * @date 2023-06-25
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef _LINKED_LIST_HPP_
 #define _LINKED_LIST_HPP_
 
@@ -46,9 +57,11 @@ public:
   void setEntry(std::size_t position, const T& newValue);
 
 private:
+  // head node pointer
+  Node<T>* headPtr;
 
-  //TODO
-  
+  // number of items in list 
+  std::size_t listNum;
 };
 
 #include "linked_list.tpp"
