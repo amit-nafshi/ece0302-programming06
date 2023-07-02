@@ -1,3 +1,14 @@
+/**
+ * @file test_sorted_linked_list.cpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem 06
+ * @version 0.1
+ * @date 2023-07-02
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"

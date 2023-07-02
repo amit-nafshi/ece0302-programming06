@@ -1,3 +1,13 @@
+/**
+ * @file sorted_linked_list.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem 06
+ * @version 0.1
+ * @date 2023-07-02
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 
 #ifndef _SORTED_LINKED_LIST_HPP_
 #define _SORTED_LINKED_LIST_HPP_
@@ -49,11 +59,6 @@ public:
   // get the position of the first occurrence of item
   // return -1 if not in list
   long int getPosition(const T& item);
-
-private:
-
-  // TODO
-
 };
 
 #include "sorted_linked_list.tpp"

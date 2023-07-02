@@ -1,3 +1,13 @@
+/**
+ * @file abstract_list.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem 06
+ * @version 0.1
+ * @date 2023-07-02
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 
 #ifndef _ABSTRACT_LIST_HPP_
 #define _ABSTRACT_LIST_HPP_
