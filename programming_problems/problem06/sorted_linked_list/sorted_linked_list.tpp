@@ -13,7 +13,7 @@
 #include <stdexcept>
 
 template <typename T>
-SortedLinkedList<T>::SortedLinkedList(): LinkedList<T>()
+SortedLinkedList<T>::SortedLinkedList() : LinkedList<T>()
 {
 }
 
