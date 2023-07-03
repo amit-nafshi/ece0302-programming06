@@ -13,24 +13,45 @@
 #include <stdexcept>
 
 template <typename T>
-SortedLinkedList<T>::SortedLinkedList() : LinkedList<T>()
+void bubbleSort(LinkedList<T>& list) 
 {
-}
+  int n = list.getLength();
 
-template <typename T>
-SortedLinkedList<T>::SortedLinkedList(LinkedList<T> unsorted_list) 
-{
-  for (std::size_t i = 0; i < unsorted_list.getLength(); i++)
+  for (int i = 0; i < n; i++) 
   {
-    insert(unsorted_list.getEntry(i));
+    for (int j = 0; j < n - i - 1; j++) 
+    {
+      if (list.getEntry(j) > list.getEntry(j + 1)) 
+      {
+        T temp = list.getEntry(j);
+        list.setEntry(j, list.getEntry(j + 1));
+        list.setEntry(j + 1, temp);
+      }
+    }
   }
 }
 
 template <typename T>
-SortedLinkedList<T>::SortedLinkedList(const SortedLinkedList<T> & x):
-  LinkedList<T>(x)
+SortedLinkedList<T>::SortedLinkedList() : LinkedList<T>() {}
+
+template <typename T>
+SortedLinkedList<T>::SortedLinkedList(LinkedList<T> unsorted_list) 
 {
+  // sort list
+  bubbleSort(unsorted_list);
+
+  // copy all elements from unsorted list to sorted linked list
+  for (std::size_t i = 0; i < unsorted_list.getLength(); i++) 
+    {
+        T item = unsorted_list.getEntry(i);
+        // insert item in SortedLinkedList
+        this->insert(item);
+    }
 }
+
+template <typename T>
+SortedLinkedList<T>::SortedLinkedList(const SortedLinkedList<T> & x):
+  LinkedList<T>(x) {}
 
 template <typename T>
 SortedLinkedList<T>& SortedLinkedList<T>::operator=(SortedLinkedList<T> x)
@@ -60,13 +81,13 @@ std::size_t SortedLinkedList<T>::getLength() const noexcept
 template <typename T>
 void SortedLinkedList<T>::insert(const T& item)
 {
-  std::size_t position = 1;
+  std::size_t position = 0;
   std::size_t len = getLength();
 
   // find the position to insert
   while (position <= len && item > LinkedList<T>::getEntry(position))
   {
-    ++position;
+    position++;
   }
 
   // insert the item at the position
@@ -109,11 +130,11 @@ template <typename T>
 long int SortedLinkedList<T>::getPosition(const T& item)
 {
   std::size_t len = getLength();
-  for (std::size_t i = 1; i <= len; ++i)
+  for (std::size_t i = 0; i <= len; i++)
   {
     if (LinkedList<T>::getEntry(i) == item)
     {
-      return i - 1;
+      return i;
     }
   }
   return -1;
