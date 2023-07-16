@@ -75,7 +75,7 @@ template <typename T>
 void LinkedList<T>::insert(std::size_t position, const T& item)
 {
   // check for invalid position
-  if (position > listNum)
+  if (position > listNum && position < 0)
   {
     throw std::range_error("Invalid position");
   }
@@ -93,7 +93,7 @@ void LinkedList<T>::insert(std::size_t position, const T& item)
   {
     // create pointer for current node
     Node<T>* prevNode = headPtr;
-    for (std::size_t i = 0; i < position - 1; i++)
+    for (std::size_t i = 0; i < position ; i++)
     {
       prevNode = prevNode->getNext();
     }
@@ -156,7 +156,7 @@ template <typename T>
 T LinkedList<T>::getEntry(std::size_t position) const
 {
   // check for invalid position
-  if (position >= listNum)
+  if (position > listNum)
   {
     throw std::range_error("Invalid position");
   }
@@ -176,7 +176,7 @@ template <typename T>
 void LinkedList<T>::setEntry(std::size_t position, const T& newValue)
 {
   // check for invalid position
-  if (position >= listNum)
+  if (position > listNum)
   {
     throw std::range_error("Invalid position");
   }

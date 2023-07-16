@@ -83,11 +83,18 @@ void SortedLinkedList<T>::insert(const T& item)
 {
   std::size_t position = 0;
   std::size_t len = getLength();
-
-  // find the position to insert
-  while (position <= len && item > LinkedList<T>::getEntry(position))
+  
+  if (len == 0)
   {
-    position++;
+    position = 0;
+  }
+  else
+  {
+    // find the position to insert
+    while (position < len && item > LinkedList<T>::getEntry(position))
+    {
+      ++position;
+    }
   }
 
   // insert the item at the position
@@ -130,7 +137,13 @@ template <typename T>
 long int SortedLinkedList<T>::getPosition(const T& item)
 {
   std::size_t len = getLength();
-  for (std::size_t i = 0; i <= len; i++)
+
+  if (len == 0)
+  {
+    return -1;
+  }
+
+  for (std::size_t i = 0; i < len; i++)
   {
     if (LinkedList<T>::getEntry(i) == item)
     {
