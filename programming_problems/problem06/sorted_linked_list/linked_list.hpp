@@ -56,6 +56,10 @@ public:
   // set the value of the item at position
   void setEntry(std::size_t position, const T& newValue);
 
+  // helper function to find current node
+  Node<T>* getNodeAt(std::size_t position) const;
+
+
 private:
   // head node pointer
   Node<T>* headPtr;
