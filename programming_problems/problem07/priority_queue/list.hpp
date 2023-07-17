@@ -1,3 +1,14 @@
+/**
+ * @file list.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem: 07
+ * @version 0.1
+ * @date 2023-07-17
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef _LIST_HPP_
 #define _LIST_HPP_
 
@@ -45,6 +56,7 @@ public:
   // set the value of the item at position 
   void setEntry(std::size_t position, const T& newValue);
 
+  // helper function 
   Node<T>* getNodeAt(std::size_t position) const;
 
 private:

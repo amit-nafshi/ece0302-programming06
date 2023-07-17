@@ -1,3 +1,14 @@
+/**
+ * @file Node.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem: 07
+ * @version 0.1
+ * @date 2023-07-17
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #ifndef NODE_
 #define NODE_
 

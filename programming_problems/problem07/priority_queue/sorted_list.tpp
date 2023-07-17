@@ -1,3 +1,14 @@
+/**
+ * @file sorted_list.tpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem: 07
+ * @version 0.1
+ * @date 2023-07-17
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
+
 #include "sorted_list.hpp"
 
 template <typename T, typename L>

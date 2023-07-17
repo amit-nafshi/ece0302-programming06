@@ -1,3 +1,13 @@
+/**
+ * @file abstract_sorted_list.hpp
+ * @author Amit Nafshi (amn102@pitt.edu)
+ * @brief Programming Problem: 07
+ * @version 0.1
+ * @date 2023-07-17
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 
 #ifndef _ABSTRACT_SORTED_LIST_HPP_
 #define _ABSTRACT_SORTED_LIST_HPP_
