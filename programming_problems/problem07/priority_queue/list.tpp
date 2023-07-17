@@ -60,41 +60,36 @@ std::size_t List<T>::getLength() const noexcept
 template <typename T>
 void List<T>::insert(std::size_t position, const T& item)
 {
-  // check for invalid position
   if (position < 0 || position > size) 
   {
     throw std::out_of_range("Invalid position");
   }
 
-  Node<T>* temp = new Node<T>(item);
+  Node<T>* newNode = new Node<T>(item);
 
-  // check if at head pointer 
   if (position == 0) 
   {
-    temp->setNext(head);
-    head = temp;
+    newNode->setNext(head);
+    head = newNode;
   } 
   else 
   {
     Node<T>* prev = getNodeAt(position - 1);
-    temp->setNext(prev->getNext());
-    prev->setNext(temp);
+    newNode->setNext(prev->getNext());
+    prev->setNext(newNode);
   }
 
-  // adjust size
   size++;
 }
 
 template <typename T>
 void List<T>::remove(std::size_t position)
 {
-  // check for invalid position
   if (position < 0 || position > size) 
   {
     throw std::out_of_range("Invalid position");
   }
 
-  // temp node for current node
   Node<T>* cur;
 
   if (position == 0) 
@@ -109,7 +104,6 @@ void List<T>::remove(std::size_t position)
     prev->setNext(cur->getNext());
   }
 
-  // adjust size and reset current node
   delete cur;
   size--;
 }
@@ -136,18 +130,15 @@ void List<T>::setEntry(std::size_t position, const T& newValue)
   Node<T>* cur = getNodeAt(position);
   cur->setItem(newValue);
 }
-//------------------------------------------------------------------------------------
-// helper function to find current node
+
 template <typename T>
 Node<T>* List<T>::getNodeAt(std::size_t position) const 
 {
-  // check position
   if (position < 0 || position >= size)
   {
     throw std::out_of_range("Invalid position");
   }
 
-  // search and find current node
   Node<T>* cur = head;
   for (std::size_t i = 0; i < position; i++) 
   {

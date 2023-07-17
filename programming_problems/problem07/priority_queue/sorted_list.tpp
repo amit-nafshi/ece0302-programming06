@@ -51,7 +51,10 @@ std::size_t SortedList<T, L>::getLength() const noexcept
 template <typename T, typename L>
 void SortedList<T, L>::insert(const T& item)
 {
+  // position = length
+  // search word from last position to head
   std::size_t position = getLength();
+  // check for valid position
   while (position > 0 && item < getEntry(position - 1)) 
   {
     position--;
@@ -90,6 +93,7 @@ T SortedList<T, L>::getEntry(std::size_t position) const
 template <typename T, typename L>
 long int SortedList<T, L>::getPosition(const T& newValue)
 {
+  // search through list until newValue is found at position 
   for (std::size_t position = 0; position < getLength(); position++) 
   {
     if (getEntry(position) == newValue) 
@@ -97,5 +101,6 @@ long int SortedList<T, L>::getPosition(const T& newValue)
       return position;
     }
   }
+  // return -1 if not found 
   return -1;
 }
